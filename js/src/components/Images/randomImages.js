@@ -1,8 +1,5 @@
-import React from 'react'
-
-export const RandomImages = (data) => {
+export const randomImages = (data) => {
     if (!data) return
-    data = data['hits']
     let arrOfNumbers = []
     let arrOfImages = []
 

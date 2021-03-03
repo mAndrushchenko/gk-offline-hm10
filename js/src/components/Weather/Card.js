@@ -1,6 +1,6 @@
-import React, {useCallback} from "react"
+import React, { useCallback } from "react"
 
-const Weather = ({res}) => {
+const Card = ({res}) => {
     const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     const today = weekDays[new Date().getDay()]
     const {name} = res
@@ -23,7 +23,7 @@ const Weather = ({res}) => {
     )
 }
 
-export default Weather
+export default Card
 
 
 

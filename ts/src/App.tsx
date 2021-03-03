@@ -1,20 +1,21 @@
-import React from 'react';
-import Images from "./components/Images";
+import React from 'react'
+import './css/index.css'
+import { Images } from "./components/Images"
+import { Users } from "./components/Users"
+import { Weather } from "./components/Weather"
+import { Provider } from 'react-redux'
+import { store } from './store'
 
+export const App = () => {
 
-const  App:React.FC = () => {
-
-  return (
-      <div>
-        <select>
-          <option value="black" selected>black</option>
-          <option value="gray">gray</option>
-          <option value="blue">blue</option>
-        </select>
-          <div>abcd</div>
-        <Images />
-    </div>
-  )
+    return (
+        <Provider store={store}>
+            <div className="wrapper">
+                <Images/>
+                <Users/>
+                <Weather/>
+            </div>
+        </Provider>
+    )
 }
 
-export default App;

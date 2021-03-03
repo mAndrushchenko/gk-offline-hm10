@@ -1,22 +1,26 @@
-import React, {useState, useCallback, useMemo} from "react"
-import {request} from "../services/api/requests"
-import image from '../css/image-bg.jpg'
-import {images} from  '../services/api/url'
-import {RandomImages} from "./custom-hooks/RandomImages";
+import React, { useState, useCallback, useMemo, useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { randomImages } from "./randomImages"
+import { getImages } from "../../store/imageSlice"
+import image from '../../css/image-bg.jpg'
 
 
 const Images = () => {
-    const [res, setRes] = useState(null)
-    const [text, setText] = useState('Upload pictures')
-    const data = useMemo(()=> RandomImages(res), [res])
+    const dispatch = useDispatch()
+    const images = useSelector(state => state.images)
+    const [res, setRes] = useState(images)
+    const [text, setText] = useState('Upload images')
+    const data = useMemo(() => randomImages(res), [res])
 
     const handleClick = useCallback(() => {
-        setText('Upload another pictures')
-        request(images)
-            .then(setRes)
-    }, [res])
+        dispatch(getImages())
+        setText('Upload another images')
+    }, [res, images])
 
-    return (<div className="box">
+    useEffect(() => setRes(images),[images])
+
+    return (
+        <div className="box">
             <img src={image} className="bg bg-image" alt=""/>
             <div className="images-wrapper">
                 <div className="images-content">
@@ -33,7 +37,8 @@ const Images = () => {
                                     className="image-item"
                                     src={item.webformatURL}
                                     key={item.id}
-                                    alt=""/>
+                                    alt=""
+                                />
                             }
                         })}
                     </div>
