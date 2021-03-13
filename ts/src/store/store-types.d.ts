@@ -6,20 +6,20 @@ export type TReducer = ReturnType<typeof reducer>
 export type TAppDispatch = typeof store.dispatch
 
 /**  types for Image component*/
-export type TypeImageState = {
+export type TImageState = {
     id: number
     webformatURL: string
 }
 
-export type TypeArrayImagesState = TypeImageState[]
+export type TArrayImagesState = TImageState[]
 
 export interface IImagesState {
-    images: TypeImageState[]
+    images: TImageState[]
 }
 
 /**  types for Users component*/
 
-export type TypeUserState = {
+export type TUserState = {
     id: number
     name: string
     email: string
@@ -28,14 +28,14 @@ export type TypeUserState = {
     username: string
 }
 
-export type TypeArrayUsersState = TypeUserState[]
+export type TArrayUsersState = TUserState[]
 
 export interface IUsersState {
-    users: TypeArrayUsersState
+    users: TArrayUsersState
 }
 
 /** for Weather component */
-export type TypeWeatherState = {
+export type TWeatherState = {
     name: string
     description: string
     icon: string
@@ -44,5 +44,5 @@ export type TypeWeatherState = {
 }
 
 export interface IWeatherState {
-    weather: TypeWeatherState
+    weather: TWeatherState
 }

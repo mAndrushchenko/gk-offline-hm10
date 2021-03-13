@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useMemo, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { randomImages } from "./randomImages"
+import { randomImages } from "../../services/randomImages"
 import { getImages } from "../../store/imageSlice"
 import image from '../../css/image-bg.jpg'
 
@@ -12,8 +12,18 @@ const Images = () => {
     const [text, setText] = useState('Upload images')
     const data = useMemo(() => randomImages(res), [res])
 
-    const handleClick = useCallback(() => {
+    const handleClick = useCallback(async () => {
         dispatch(getImages())
+        const url = 'https://api.gismeteo.net/v2/search/cities/?lang=en&query=cherakasy &appid=56b30cb255.3443075'
+        try {
+            const response = await fetch(url,{method: "GET"}).then(data => data.json()).then(data => data)
+            console.log(response)
+
+        } catch (err) {
+            console.log(err)
+        }
+
+
         setText('Upload another images')
     }, [res, images])
 
@@ -33,13 +43,17 @@ const Images = () => {
                         className="images-pictures">
                         {res && data.map((item, index) => {
                             if (index <= 8) {
-                                return <img
-                                    className="image-item"
-                                    src={item.webformatURL}
-                                    key={item.id}
-                                    alt=""
-                                />
-                            }
+                                return (
+                                    <div
+                                        key={item.id}
+                                        className="image-box">
+                                        <img
+                                            className="image-item"
+                                            src={item.webformatURL}
+                                            alt=""
+                                        />
+                                    </div>
+                                )}
                         })}
                     </div>
                 </div>

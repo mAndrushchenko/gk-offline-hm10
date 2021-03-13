@@ -1,21 +1,21 @@
 import React, { useState, useCallback, useMemo, useEffect, FC } from "react"
 import { selectImage, getImages } from "../../store/imageSlice"
 import { useDispatch, useSelector } from "react-redux"
-import { randomImages } from "./randomImages"
+import { randomImages } from "../../services/randomImages"
 import {
     TAppDispatch,
     IImagesState,
-    TypeImageState,
-    TypeArrayImagesState
+    TImageState,
+    TArrayImagesState
 } from "../../store/store-types"
 import image from "../../css/image-bg.jpg"
 
 
 export const Images: FC = () => {
     const dispatch = useDispatch<TAppDispatch>()
-    const images = useSelector<IImagesState, TypeArrayImagesState>(selectImage)
+    const images = useSelector<IImagesState, TArrayImagesState>(selectImage)
 
-    const [res, setRes] = useState<TypeArrayImagesState | null>(null)
+    const [res, setRes] = useState<TArrayImagesState | null>(null)
     const [text, setText] = useState<string>('Upload images')
 
     const data = useMemo(() => randomImages(res), [res])
@@ -29,7 +29,12 @@ export const Images: FC = () => {
 
     return (
         <div className="box">
-            <img src={image} className="bg bg-image" alt=""/>
+            <img
+                src={image}
+                draggable={false}
+                className="bg bg-image"
+                alt=""
+            />
             <div className="images-wrapper">
                 <div className="images-content">
                     <button
@@ -39,14 +44,20 @@ export const Images: FC = () => {
                     </button>
                     <div
                         className="images-pictures">
-                        {res && data.map((item: TypeImageState, index: number) => {
+                        {res && data.map((item: TImageState, index: number) => {
                             if (index <= 8) {
-                                return <img
-                                    className="image-item"
-                                    src={item.webformatURL}
-                                    key={item.id}
-                                    alt=""
-                                />
+                                return (
+                                    <div
+                                        key={item.id}
+                                        className="image-box">
+                                        <img
+                                            className="image-item"
+                                            src={item.webformatURL}
+                                            alt=""
+                                            draggable={false}
+                                        />
+                                    </div>
+                                )
                             }
                         })}
                     </div>

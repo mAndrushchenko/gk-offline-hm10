@@ -1,6 +1,6 @@
-import { TypeUserState } from "../../store/store-types"
+import { TUserState } from "../../store/store-types"
 
 export interface IUser {
-    user: TypeUserState
+    user: TUserState
     key: number
 }

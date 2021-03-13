@@ -2,15 +2,15 @@ import { put, call, takeEvery } from 'redux-saga/effects'
 import { request } from "../services/api/requests"
 import { imagesUrl } from "../services/api/url"
 import { getImages, setImages } from "../store/imageSlice"
-import { TypeArrayImagesState, TypeImageState } from "../store/store-types"
+import { TArrayImagesState, TImageState } from "../store/store-types"
 
 const fetchImageFromApi = () => request(imagesUrl)
 
 function* fetchImageWorker() {
     try {
         const data: any = yield call(fetchImageFromApi)
-        const images: TypeArrayImagesState = data.hits.map((image: any) => {
-            return <TypeImageState>{
+        const images: TArrayImagesState = data.hits.map((image: any) => {
+            return <TImageState>{
                 id: image.id,
                 webformatURL: image.webformatURL
             }

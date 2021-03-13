@@ -1,6 +1,6 @@
-import { TypeArrayImagesState } from "../../store/store-types"
+import { TArrayImagesState } from "../store/store-types"
 
-export const randomImages = (data: null | TypeArrayImagesState): TypeArrayImagesState => {
+export const randomImages = (data: null | TArrayImagesState): TArrayImagesState => {
     if (!data) return []
     let arrOfNumbers: number[] = []
     let arrOfImages: any[] = []

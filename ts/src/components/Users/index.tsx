@@ -5,14 +5,14 @@ import { User } from './User'
 import {
     IUsersState,
     TAppDispatch,
-    TypeArrayUsersState
+    TArrayUsersState
 } from "../../store/store-types"
 import image from "../../css/list-bg.jpg"
 
 export const Users: FC = () => {
-    const users = useSelector<IUsersState, TypeArrayUsersState>(selectUser)
+    const users = useSelector<IUsersState, TArrayUsersState>(selectUser)
     const dispatch = useDispatch<TAppDispatch>()
-    const [res, setRes] = useState<TypeArrayUsersState | null>(null)
+    const [res, setRes] = useState<TArrayUsersState | null>(null)
 
     const handleClick = useCallback(() => {
         dispatch(getUsers())
@@ -22,7 +22,12 @@ export const Users: FC = () => {
 
     return (
         <div className="box">
-            <img src={image} className="bg" alt=""/>
+            <img
+                src={image}
+                draggable={false}
+                className="bg"
+                alt=""
+            />
             <div className="users-wrapper">
                 <div className="images-content">
                     <button

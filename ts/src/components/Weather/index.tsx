@@ -4,15 +4,15 @@ import { getWeather, selectWeather } from "../../store/weatherSlice"
 import { Card } from './Card'
 import {
     TAppDispatch,
-    TypeWeatherState,
+    TWeatherState,
     IWeatherState
 } from "../../store/store-types"
 import image from "../../css/weather-bg.jpg"
 
 export const Weather: FC = () => {
     const dispatch = useDispatch<TAppDispatch>()
-    const weather = useSelector<IWeatherState, TypeWeatherState>(selectWeather)
-    const [res, setRes] = useState<TypeWeatherState | null>(null)
+    const weather = useSelector<IWeatherState, TWeatherState>(selectWeather)
+    const [res, setRes] = useState<TWeatherState | null>(null)
 
     const handleClick = useCallback(() => {
         dispatch(getWeather())
@@ -26,6 +26,7 @@ export const Weather: FC = () => {
                 src={image}
                 className="bg"
                 alt=""
+                draggable={false}
             />
             <div className="weather-wrapper">
                 <div className="images-content">

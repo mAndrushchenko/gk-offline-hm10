@@ -24,6 +24,7 @@ li {
 }
 
 .btn {
+  z-index: 0;
   cursor: pointer;
   font-size: 30px;
   position: absolute;
@@ -66,14 +67,22 @@ li {
 }
 
 .images-pictures {
-  padding-top: 80px;
+  padding-top: 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   justify-items: center;
 }
 
+.image-box {
+  width: 350px;
+  height: 250px;
+}
+
 .image-item {
+  position: relative;
+  left: 25px;
+  top: 10px;
   margin: 7px 1px ;
   max-width: 300px;
   transition: 0.5s ease-in-out;
@@ -81,11 +90,11 @@ li {
 }
 
 .image-item:hover{
-  z-index: 5;
   position: relative;
-  max-width: 400px;
-  top: -25px;
-  margin: -8px;
+  left: -25px;
+  z-index: 1;
+  max-width: 420px;
+  margin: -10px;
 }
 
 .users-wrapper {
@@ -162,6 +171,6 @@ li {
 .weather-img {
   border: #111111 1px solid;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-  background-color: #b27354;
+  background-color: snow;
   width: 150px;
 }
